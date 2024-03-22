@@ -4,16 +4,65 @@
     <title>Redirecting...</title>
     <script>
         var deepLinkUrl = 'iihfapp://'; 
-        var appStoreUrl = 'https://play.google.com/store/apps/details?id=com.iihf.iihfandroid'; 
+        var iOSAppStoreUrl = 'https://apps.apple.com/app/1488337799'; // Replace with your iOS app's App Store URL
+        var androidPlayStoreUrl = 'https://play.google.com/store/apps/details?id=com.iihf.iihfandroid'; // Replace with your Android app's Play Store URL
+
+        function redirectToAppStore() {
+            window.location.href = iOSAppStoreUrl;
+        }
+
+        function redirectToPlayStore() {
+            window.location.href = androidPlayStoreUrl;
+        }
         
         function checkAppInstalled() {
             window.location.href = deepLinkUrl;
             setTimeout(function() {
-                window.location.href = appStoreUrl;
+               if (navigator.userAgent.match(/(iPhone|iPad|iPod)/i)) {
+                    redirectToAppStore();
+                } else if (navigator.userAgent.match(/Android/i)) {
+                    redirectToPlayStore();
+                } else {
+                    // Fallback logic for other devices (optional)
+                    console.log('Unsupported device');
+                }
             }, 1000);
         }
         
         checkAppInstalled();
+    </script>
+</head>
+<body>
+    <p>Redirecting...</p>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redirecting...</title>
+    <script>
+        var iOSAppStoreUrl = 'https://apps.apple.com/app/idYOUR_APP_ID'; // Replace with your iOS app's App Store URL
+        var androidPlayStoreUrl = 'https://play.google.com/store/apps/details?id=YOUR_APP_PACKAGE'; // Replace with your Android app's Play Store URL
+
+        function redirectToAppStore() {
+            window.location.href = iOSAppStoreUrl;
+        }
+
+        function redirectToPlayStore() {
+            window.location.href = androidPlayStoreUrl;
+        }
+
+        // Check if the user is on an iOS or Android device and redirect accordingly
+        if (navigator.userAgent.match(/(iPhone|iPad|iPod)/i)) {
+            redirectToAppStore();
+        } else if (navigator.userAgent.match(/Android/i)) {
+            redirectToPlayStore();
+        } else {
+            // Fallback logic for other devices (optional)
+            console.log('Unsupported device');
+        }
     </script>
 </head>
 <body>
