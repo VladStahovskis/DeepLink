@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redirecting...</title>
+    <script>
+        var deepLinkUrl = 'iihfapp://'; 
+        var appStoreUrl = 'https://play.google.com/store/apps/details?id=your.app.package'; 
+        
+        function checkAppInstalled() {
+            window.location.href = deepLinkUrl;
+            setTimeout(function() {
+                window.location.href = appStoreUrl;
+            }, 1000);
+        }
+        
+        checkAppInstalled();
+    </script>
+</head>
+<body>
+    <p>Redirecting...</p>
+</body>
+</html>
