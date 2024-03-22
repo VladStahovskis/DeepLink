@@ -4,8 +4,8 @@
     <title>Redirecting...</title>
     <script>
         var deepLinkUrl = 'iihfapp://'; 
-        var iOSAppStoreUrl = 'https://apps.apple.com/app/1488337799'; // Replace with your iOS app's App Store URL
-        var androidPlayStoreUrl = 'https://play.google.com/store/apps/details?id=com.iihf.iihfandroid'; // Replace with your Android app's Play Store URL
+        var iOSAppStoreUrl = 'https://apps.apple.com/app/1488337799'; 
+        var androidPlayStoreUrl = 'https://play.google.com/store/apps/details?id=com.iihf.iihfandroid'; 
 
         function redirectToAppStore() {
             window.location.href = iOSAppStoreUrl;
@@ -14,21 +14,24 @@
         function redirectToPlayStore() {
             window.location.href = androidPlayStoreUrl;
         }
-        
+
         function checkAppInstalled() {
-            window.location.href = deepLinkUrl;
-            setTimeout(function() {
-               if (navigator.userAgent.match(/(iPhone|iPad|iPod)/i)) {
+            var iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.onload = function() {};
+            iframe.onerror = function() {
+                if (navigator.userAgent.match(/(iPhone|iPad|iPod)/i)) {
                     redirectToAppStore();
                 } else if (navigator.userAgent.match(/Android/i)) {
                     redirectToPlayStore();
                 } else {
-                    // Fallback logic for other devices (optional)
                     console.log('Unsupported device');
                 }
-            }, 1000);
+            };
+            iframe.src = deepLinkUrl;
+            document.body.appendChild(iframe);
         }
-        
+
         checkAppInstalled();
     </script>
 </head>
