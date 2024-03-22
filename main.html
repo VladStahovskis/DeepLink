@@ -14,24 +14,21 @@
         function redirectToPlayStore() {
             window.location.href = androidPlayStoreUrl;
         }
-
+        
         function checkAppInstalled() {
-            var iframe = document.createElement('iframe');
-            iframe.style.display = 'none';
-            iframe.onload = function() {};
-            iframe.onerror = function() {
-                if (navigator.userAgent.match(/(iPhone|iPad|iPod)/i)) {
+            window.location.href = deepLinkUrl;
+            setTimeout(function() {
+               if (navigator.userAgent.match(/(iPhone|iPad|iPod)/i)) {
                     redirectToAppStore();
                 } else if (navigator.userAgent.match(/Android/i)) {
                     redirectToPlayStore();
                 } else {
+                    // Fallback logic for other devices (optional)
                     console.log('Unsupported device');
                 }
-            };
-            iframe.src = deepLinkUrl;
-            document.body.appendChild(iframe);
+            }, 3000);
         }
-
+        
         checkAppInstalled();
     </script>
 </head>
